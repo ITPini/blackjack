@@ -5,6 +5,6 @@ int house_count;
 int player_count;
 
 void setup(){
-  size(1000,600);
-  
+  size(1000, 600);
+  background(0, 255, 0);
 }
