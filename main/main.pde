@@ -1,3 +1,7 @@
+/* 
+Made by Nicolai and Marcelino
+2d1
+*/
 int player_score;
 int house_score;
 int count;
@@ -12,9 +16,13 @@ String[] face = {"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight",
 
 void setup(){
   size(1000, 600);
-  
-println(face[12] + " of " + suit[1]);
-println(generate_card_string());
+
+// Test
+   int suit_rand = int(random(suit.length));
+   println(suit[suit_rand]);
+   println(face[12] + " of " + suit[1]);
+   println(generate_card_string());
+
   //Loads casino table
   background(0, 153, 0);
   translate(width / 2, height / 2);
@@ -41,7 +49,8 @@ println(generate_card_string());
 
 void draw(){
   translate(width / 2, height / 2);
-  create_card("Ace of Clubs");
+  create_card(generate_card_string());
+  noLoop();
 }
 
 //Creates card based on card name from "/resources/Cards"
@@ -51,52 +60,16 @@ void create_card(String _card){
   image(cardImg, 0, 200);
 }
 
-// Generates card string
- void generate_card_string(){
-   String suit_rand = (int)random(suit.length); return;
-   //float face = floor(random(0, 13));
-   //value = generate_card_value();
+ //Generates a random string representing a card
+ public String generate_card_string(){
+   int suit_rand = int(random(suit.length));
+   int face_rand = int(random(face.length));
    
-   //str = suit + " of " + value
+   String card_str = face[face_rand] + " of " + suit[suit_rand];
+   return card_str;
  }
 /*
 
-
-
-
-
-/* Generates a card suit
-void generate_card_suit(int suit){
-   when hit button clicked{
-  suit(random(1, 4))
-  if 1 suit = "hearts"
-  if 2 suit = "diamonds"
-  if 3 suit = "clubs"
-  if 4 suit = "spades"
-  
-  }
-  
-  // Generate card value
-  void generate_card_value(int value){
-    value(random(1, 13)
-    if 1 value = "Ace"
-    if 2 value = "Two"
-    if 3 value = "Three"
-    if 4 value = "Four"
-    if 5 value = "Five"
-    if 6 value = "Six"
-    if 7 value = "Seven"
-    if 8 value = "Eight"
-    if 9 value = "Nine"
-    if 10 value = "Ten"
-    if 11 value = "Jack"
-    if 12 value = "Queen"
-    if 13 value = "King"
-    
-    
-  }
-  
-  
   void score_card_value(){
   value(random(1, 13))
   if value = 1{
