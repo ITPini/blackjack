@@ -11,6 +11,7 @@ int player_count;
 PImage cardImg;
 PImage cardBackImg;
 
+int[] hitXY = {width * 2, height * 2, 50, 50};
 String[] suit = {"Clubs", "Diamonds", "Hearts", "Spades"};
 String[] face = {"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"};
 
@@ -26,24 +27,30 @@ void setup(){
   //Loads casino table
   background(0, 153, 0);
   translate(width / 2, height / 2);
-  
+
   //Loads card placeholder
   fill(0, 140, 0);
   stroke(255);
   strokeWeight(4);
   rect(-38, 150, 76, 100, 5);
   rect(width / 3 - 2, -height / 3 - 2, 76, 100, 5);
-  
+
   //Loads dealer rule
   fill(255);
   textSize(32);
   textAlign(CENTER);
   text("Dealer draws on 16 or less", 0, -100);
-  
+
   //Loads card stack
   cardBackImg = loadImage("../resources/Cards/Card Back.gif");
   for (int i = 0; i <= 10; i += 2){
     image(cardBackImg, width / 3 + i, -height / 3 + i);
+
+  //Loads "Hit" button
+  fill(0, 255, 0);
+  stroke(255);
+  strokeWeight(2);
+  ellipse(hitXY[0],hitXY[1],hitXY[2],hitXY[3]);
   }
 }
 
@@ -70,9 +77,7 @@ void create_card(String _card){
    String[] check_double = {};
    return card_str;
  }
- 
- 
-   
+
  //}
 /*
 
