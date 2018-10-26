@@ -17,12 +17,12 @@ String[] face = {"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight",
 void setup(){
   size(1000, 600);
 
-// Test
+/* Test
    int suit_rand = int(random(suit.length));
    println(suit[suit_rand]);
    println(face[12] + " of " + suit[1]);
    println(generate_card_string());
-
+*/
   //Loads casino table
   background(0, 153, 0);
   translate(width / 2, height / 2);
@@ -62,12 +62,18 @@ void create_card(String _card){
 
  //Generates a random string representing a card
  public String generate_card_string(){
+   // When "Hit" button clicked
    int suit_rand = int(random(suit.length));
    int face_rand = int(random(face.length));
-   
    String card_str = face[face_rand] + " of " + suit[suit_rand];
+   // If card_str in list generate new card
+   String[] check_double = {};
    return card_str;
  }
+ 
+ 
+   
+ //}
 /*
 
   void score_card_value(){
