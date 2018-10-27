@@ -14,7 +14,7 @@ PImage cardBackImg;
 int[] hitXY = {width * 2, height * 2, 50, 50};
 String[] suit = {"Clubs", "Diamonds", "Hearts", "Spades"};
 String[] face = {"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"};
-
+int[] value = {11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10};
 void setup(){
   size(1000, 600);
 
@@ -24,6 +24,7 @@ void setup(){
    println(face[12] + " of " + suit[1]);
    println(generate_card_string());
 */
+
   //Loads casino table
   background(0, 153, 0);
   translate(width / 2, height / 2);
@@ -56,7 +57,10 @@ void setup(){
 
 void draw(){
   translate(width / 2, height / 2);
-  create_card(generate_card_string());
+  int cardnumber=getcardnumber();
+  create_card(getcardname(cardnumber));
+  println(cardnumber);
+  println(value[cardnumber%13]);
   noLoop();
 }
 
@@ -67,7 +71,7 @@ void create_card(String _card){
   image(cardImg, 0, 200);
 }
 
- //Generates a random string representing a card
+ /*Generates a random string representing a card
  public String generate_card_string(){
    // When "Hit" button clicked
    int suit_rand = int(random(suit.length));
@@ -75,10 +79,22 @@ void create_card(String _card){
    String card_str = face[face_rand] + " of " + suit[suit_rand];
    // If card_str in list generate new card
    String[] check_double = {};
-   return card_str;
- }
-
+   return card_str; */
+   
  //}
+ public int getcardnumber(){
+   // When "Hit" button clicked
+   int int_rand = int(random(suit.length*face.length));
+   return int_rand;
+   }
+   
+   public String getcardname(int number){
+    String card_str = face[number%13] + " of " + suit[number/13];
+   // If card_str in list generate new card
+   String[] check_double = {};
+   return card_str; 
+   }
+ 
 /*
 
   void score_card_value(){
