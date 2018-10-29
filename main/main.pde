@@ -110,3 +110,7 @@ void create_card(String _card){
  
  return value;
 }
+
+public int player_score(){
+  
+}
