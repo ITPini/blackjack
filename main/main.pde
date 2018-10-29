@@ -1,4 +1,11 @@
 /* 
+For at tælle point skal vi lave et whileloop og statementen for whileloopet
+bliver false når runden er slut.
+Også køre point tælleren bare i ring og adder den nye carval til en variabel som printes på skærmen
+hver gang et nyt kort bliver trukket.
+Så lad os lige finde ud af hvordan man gør dette eller om der er en bedere måde at tælle point på.
+Også skal vi lige tage at få noget mere orden på alt det her shit.
+Der skal også lave en cardplaceholder for dealer.
 Made by Nicolai and Marcelino
 2d1
 */
@@ -25,51 +32,21 @@ int[] test = {};
 void setup(){
   //fullScreen();
   size(1000, 600);
-
-/* Test
-   int suit_rand = int(random(suit.length));
-   println(suit[suit_rand]);
-   println(face[12] + " of " + suit[1]);
-   println(generate_cardString());
-*/
-
+  
   //Loads casino table
   translate(width / 2, height / 2);
   background(0, 153, 0);
 
-  //Loads card placeholder
-  fill(0, 100, 0);
-  stroke(255);
-  strokeWeight(4);
-  rect(-38, 150, 76, 100, 5);
-  rect(width / 3 - 2, height / -3 - 2, 76, 100, 5);
-
-  //Loads dealer rule
-  fill(255);
-  textSize(32);
-  textAlign(CENTER);
-  text("Dealer draws on 16 or less", 0, height / -10);
-
+ loadCardPlaceholder();
+ loadDealerRule();
+ loadHitButton();
+ 
   //Loads card stack
   cardbackImg = loadImage("../resources/Cards/Card Back.gif");
   for (int i = 0; i <= 10; i += 2){
     image(cardbackImg, width / 3 + i, height / -3 + i);
   }
-
-  //Loads "Hit" button
-  fill(0, 255, 0);
-  stroke(255);
-  strokeWeight(2);
-  ellipse(hitXY[0], hitXY[1], hitXY[2], hitXY[3]);
-  
-  //Loads card
-  int cardNumber = getCardNumber();
-  createCard(getCardName(cardNumber), 'p'); //Player position
-  createCard(getCardName(cardNumber), 'd'); //Dealer position
-  println(cardNumber);
-  println(cardValue(value[cardNumber%13]));
-  //To get a specific object of the collection >>> doubleCheck.get(x);
-  println(doubleCheck); //Print double check list
+  loadCard();
 }
 
 void draw(){
@@ -91,49 +68,13 @@ void mouseClicked(){
 }
 */
 
-//Creates card based on card name from "/resources/Cards"
-void createCard(String card, char pos){
-  imageMode(CENTER);
-  cardImg = loadImage("../resources/Cards/" + card + ".gif");
-  //Check if card should be created at player (p) or dealer (d) position on the table.
-  if (pos == 'p'){
-    image(cardImg, 0, 200);
-  }
-  else if (pos == 'd'){
-    image(cardImg, 0, -200);
-  }
-}
-
-public int getCardNumber(){
-  // When "Hit" button clicked
-  int intRand = int(random(suit.length * face.length));
-  doubleCheck.add(intRand);
-  return intRand;
-}
-
-public String getCardName(int number){
-  String cardStr = face[number%13] + " of " + suit[number/13];
-  // If cardStr in list generate new card 
-  return cardStr; 
-}
- 
-public int cardValue(int value){
-  if (value == 1){
-  println("Would you like the value to be 1 or 11? Press a for 1 b for 11");
-    if (keyPressed){
-      if (key == 'a' || key == 'A'){
-        value = 1;
-    } if (key == 'b' || key == 'B'){
-        value = 11;
-    }   
-  }
-}
- 
-return value;
-}
 
 /*
-public int playerScore(){
+public int playerScore(int cardval){
   
 }
 */
+
+//public checkDouble(int cardval){
+  
+//}
