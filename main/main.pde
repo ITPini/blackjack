@@ -11,10 +11,10 @@ int player_count;
 PImage cardImg;
 PImage cardBackImg;
 
-int[] hitXY = {width * 2, height * 2, 50, 50};
+int[] hitXY = {width * 2, height * 2, 50, 50}; //Nigga why u even put dis shit in a array
 String[] suit = {"Clubs", "Diamonds", "Hearts", "Spades"};
 String[] face = {"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"};
-int[] value = {11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10};
+int[] value = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10};
 int[] test = {};
 
 void setup(){
@@ -57,16 +57,18 @@ void setup(){
   }
 }
 
+
 void draw(){
   translate(width / 2, height / 2);
-  int cardnumber=getcardnumber();
+  int cardnumber = getcardnumber();
   create_card(getcardname(cardnumber));
   println(cardnumber);
-  println(value[cardnumber%13]);
-  append(test, cardnumber);
-  printArray(test);
+  println(card_value(value[cardnumber%13]));
+  //append(test, cardnumber);
+  //printArray(test);
   noLoop();
 }
+
 
 //Creates card based on card name from "/resources/Cards"
 void create_card(String _card){
@@ -74,6 +76,7 @@ void create_card(String _card){
   cardImg = loadImage("../resources/Cards/" + _card + ".gif");
   image(cardImg, 0, 200);
 }
+   
    
  //}
  public int getcardnumber(){
@@ -85,24 +88,25 @@ void create_card(String _card){
    return int_rand;
    }
    
+   
    public String getcardname(int number){
     String card_str = face[number%13] + " of " + suit[number/13];
    // If card_str in list generate new card 
    return card_str; 
    }
  
-/*
-
-  void score_card_value(){
-  value(random(1, 13))
-  if value = 1{
-    choose if value = 1 or 11
+ 
+  public int card_value(int value){
+  if (value == 1){
+    println("Would you like the value to be 1 or 11? Press a for 1 b for 11");
+    if (keyPressed){
+      if (key == 'a' || key == 'A'){
+        value = 1;
+    } if (key == 'b' || key == 'B'){
+        value = 11;
+   }   
   }
-  else if value >1 && value < 11
-  value == value
-  }
-  else if if value >10 && value < 14
-  value == 10
-  
+ }
+ 
+ return value;
 }
-*/
