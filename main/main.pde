@@ -15,6 +15,8 @@ int[] hitXY = {width * 2, height * 2, 50, 50};
 String[] suit = {"Clubs", "Diamonds", "Hearts", "Spades"};
 String[] face = {"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"};
 int[] value = {11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10};
+int[] test = {};
+
 void setup(){
   size(1000, 600);
 
@@ -61,6 +63,8 @@ void draw(){
   create_card(getcardname(cardnumber));
   println(cardnumber);
   println(value[cardnumber%13]);
+  append(test, cardnumber);
+  printArray(test);
   noLoop();
 }
 
@@ -70,28 +74,20 @@ void create_card(String _card){
   cardImg = loadImage("../resources/Cards/" + _card + ".gif");
   image(cardImg, 0, 200);
 }
-
- /*Generates a random string representing a card
- public String generate_card_string(){
-   // When "Hit" button clicked
-   int suit_rand = int(random(suit.length));
-   int face_rand = int(random(face.length));
-   String card_str = face[face_rand] + " of " + suit[suit_rand];
-   // If card_str in list generate new card
-   String[] check_double = {};
-   return card_str; */
    
  //}
  public int getcardnumber(){
    // When "Hit" button clicked
    int int_rand = int(random(suit.length*face.length));
+   //int[] check_double = {};
+   //append(check_double, int_rand);
+   //println(check_double[1]);
    return int_rand;
    }
    
    public String getcardname(int number){
     String card_str = face[number%13] + " of " + suit[number/13];
-   // If card_str in list generate new card
-   String[] check_double = {};
+   // If card_str in list generate new card 
    return card_str; 
    }
  
