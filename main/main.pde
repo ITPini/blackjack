@@ -2,115 +2,138 @@
 Made by Nicolai and Marcelino
 2d1
 */
-int player_score;
-int house_score;
+import java.util.Collections;
+
+int playerScore;
+int houseScore;
 int count;
-int house_count;
-int player_count;
+int houseCount;
+int playerCount;
 
 PImage cardImg;
-PImage cardBackImg;
+PImage cardbackImg;
 
-int[] hitXY = {width * 2, height * 2, 50, 50}; //Nigga why u even put dis shit in a array
+int[] hitXY = {width * 2, height * 2, 50, 50}; //Nigga why u even put dis shit in a array <<< til hitboxen af knappen
+
 String[] suit = {"Clubs", "Diamonds", "Hearts", "Spades"};
 String[] face = {"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"};
 int[] value = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10};
+ArrayList doubleCheck = new ArrayList();
+
 int[] test = {};
 
 void setup(){
+  //fullScreen();
   size(1000, 600);
 
 /* Test
    int suit_rand = int(random(suit.length));
    println(suit[suit_rand]);
    println(face[12] + " of " + suit[1]);
-   println(generate_card_string());
+   println(generate_cardString());
 */
 
   //Loads casino table
-  background(0, 153, 0);
   translate(width / 2, height / 2);
+  background(0, 153, 0);
 
   //Loads card placeholder
-  fill(0, 140, 0);
+  fill(0, 100, 0);
   stroke(255);
   strokeWeight(4);
   rect(-38, 150, 76, 100, 5);
-  rect(width / 3 - 2, -height / 3 - 2, 76, 100, 5);
+  rect(width / 3 - 2, height / -3 - 2, 76, 100, 5);
 
   //Loads dealer rule
   fill(255);
   textSize(32);
   textAlign(CENTER);
-  text("Dealer draws on 16 or less", 0, -100);
+  text("Dealer draws on 16 or less", 0, height / -10);
 
   //Loads card stack
-  cardBackImg = loadImage("../resources/Cards/Card Back.gif");
+  cardbackImg = loadImage("../resources/Cards/Card Back.gif");
   for (int i = 0; i <= 10; i += 2){
-    image(cardBackImg, width / 3 + i, -height / 3 + i);
+    image(cardbackImg, width / 3 + i, height / -3 + i);
+  }
 
   //Loads "Hit" button
   fill(0, 255, 0);
   stroke(255);
   strokeWeight(2);
-  ellipse(hitXY[0],hitXY[1],hitXY[2],hitXY[3]);
-  }
+  ellipse(hitXY[0], hitXY[1], hitXY[2], hitXY[3]);
+  
+  //Loads card
+  int cardNumber = getCardNumber();
+  createCard(getCardName(cardNumber), 'p'); //Player position
+  createCard(getCardName(cardNumber), 'd'); //Dealer position
+  println(cardNumber);
+  println(cardValue(value[cardNumber%13]));
+  //To get a specific object of the collection >>> doubleCheck.get(x);
+  println(doubleCheck); //Print double check list
 }
-
 
 void draw(){
   translate(width / 2, height / 2);
-  int cardnumber = getcardnumber();
-  create_card(getcardname(cardnumber));
-  println(cardnumber);
-  println(card_value(value[cardnumber%13]));
-  //append(test, cardnumber);
-  //printArray(test);
   noLoop();
 }
 
+/*
+//Check if mouse has pressed any button
+void mouseClicked(){
+  if (mouseButton == LEFT){
+  rectMode(CENTER);
+  rect(hitXY[0],hitXY[1],hitXY[2],hitXY[3]);
+  if (mouseX > hitXY[0] && mouseX < (hitXY[0] + hitXY[2]) && mouseY > hitXY[1] && mouseY < (hitXY[1] + hitXY[3])){
+     println("hey");
+     //noLoop();
+  }
+  }
+}
+*/
 
 //Creates card based on card name from "/resources/Cards"
-void create_card(String _card){
+void createCard(String card, char pos){
   imageMode(CENTER);
-  cardImg = loadImage("../resources/Cards/" + _card + ".gif");
-  image(cardImg, 0, 200);
+  cardImg = loadImage("../resources/Cards/" + card + ".gif");
+  //Check if card should be created at player (p) or dealer (d) position on the table.
+  if (pos == 'p'){
+    image(cardImg, 0, 200);
+  }
+  else if (pos == 'd'){
+    image(cardImg, 0, -200);
+  }
 }
-   
-   
- //}
- public int getcardnumber(){
-   // When "Hit" button clicked
-   int int_rand = int(random(suit.length*face.length));
-   //int[] check_double = {};
-   //append(check_double, int_rand);
-   //println(check_double[1]);
-   return int_rand;
-   }
-   
-   
-   public String getcardname(int number){
-    String card_str = face[number%13] + " of " + suit[number/13];
-   // If card_str in list generate new card 
-   return card_str; 
-   }
+
+public int getCardNumber(){
+  // When "Hit" button clicked
+  int intRand = int(random(suit.length * face.length));
+  doubleCheck.add(intRand);
+  return intRand;
+}
+
+public String getCardName(int number){
+  String cardStr = face[number%13] + " of " + suit[number/13];
+  // If cardStr in list generate new card 
+  return cardStr; 
+}
  
- 
-  public int card_value(int value){
+public int cardValue(int value){
   if (value == 1){
-    println("Would you like the value to be 1 or 11? Press a for 1 b for 11");
+  println("Would you like the value to be 1 or 11? Press a for 1 b for 11");
     if (keyPressed){
       if (key == 'a' || key == 'A'){
         value = 1;
     } if (key == 'b' || key == 'B'){
         value = 11;
-   }   
+    }   
   }
- }
+}
  
- return value;
+return value;
 }
 
-public int player_score(){
+/*
+public int playerScore(){
   
 }
+*/
