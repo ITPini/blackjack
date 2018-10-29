@@ -13,7 +13,7 @@ int playerCount;
 PImage cardImg;
 PImage cardbackImg;
 
-int[] hitXY = {width * 2, height * 2, 50, 50}; //Nigga why u even put dis shit in a array <<< til hitboxen af knappen
+int[] hitXY = {width * 2, height * 2, 50, 50}; //til hitboxen af knappen og selve grafikken
 
 String[] suit = {"Clubs", "Diamonds", "Hearts", "Spades"};
 String[] face = {"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"};
