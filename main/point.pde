@@ -1,8 +1,8 @@
 int playerPoints;
-int botPoints;
+int dealerPoints;
 
 
-//while (botPoints < 21 && playerPoints < 21 && holdbutton not clicked){
+//while (dealerPoints < 21 && playerPoints < 21 && holdbutton not clicked){
   
   
   

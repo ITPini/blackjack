@@ -21,7 +21,7 @@ int playerCount;
 PImage cardImg;
 PImage cardbackImg;
 
-int[] hitXY = {width * 2, height * 2, 50, 50}; //til hitboxen af knappen og selve grafikken
+//int[] hitXY = {width / 2, height / 2, width / 2, height / 2}; //til hitboxen af knappen og selve grafikken
 
 String[] suit = {"Clubs", "Diamonds", "Hearts", "Spades"};
 String[] face = {"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"};
@@ -31,30 +31,22 @@ ArrayList doubleCheck = new ArrayList();
 int[] test = {};
 
 void setup(){
-  //fullScreen();
-  size(1000, 600);
+  //size(1000, 600);
+  fullScreen();
   
-  //Loads casino table
-  translate(width / 2, height / 2);
+  //Load casino table
   background(0, 153, 0);
+  loadCardPlaceholder();
+  loadDealerRule();
+  loadHitButton();
+  loadCardStack();
 
- loadCardPlaceholder();
- loadDealerRule();
- loadHitButton();
- 
-  //Loads card stack
-  cardbackImg = loadImage("../resources/Cards/Card Back.gif");
-  for (int i = 0; i <= 10; i += 2){
-    image(cardbackImg, width / 3 + i, height / -3 + i);
-  }
   loadCard();
 }
 
 void draw(){
   //println(mouseX + " : " + mouseY);
   //mousePressed();
-  //translate(width / 2, height / 2);
-  
 }
 
 /*
