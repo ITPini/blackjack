@@ -34,7 +34,7 @@ void setup(){
   background(0, 153, 0);
   loadCardPlaceholder();
   loadHitButton();
-  loadDealerRule();
+  loadText();
   loadCardStack();
   
   // Load starting cards

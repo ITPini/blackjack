@@ -1,3 +1,6 @@
+int playerCards = 0; // Used to calculate pixel offset of cards for player
+int dealerCards = 0; // Used to calculate pixel offset of cards for dealer
+
 // Generate a card based on a number between 0-52
 public int getCardNumber(){
   // When "Hit" button clicked
@@ -35,9 +38,11 @@ void createCard(String card, char pos){
   cardImg = loadImage("../resources/Cards/" + card + ".gif");
   // Check if card should be created at player (p) or dealer (d) position on the table.
   if (pos == 'p'){
-    image(cardImg, width / 2, height / 1.2);
+    image(cardImg, width / 2 + (15 * playerCards), height / 1.2 + (15 * playerCards));
+    playerCards++;
   }
   else if (pos == 'd'){
-    image(cardImg, width / 2, height / 7);
+    image(cardImg, width / 2 + (15 * dealerCards), height / 7 + (15 * dealerCards));
+    dealerCards++;
   }
 }

@@ -1,14 +1,17 @@
 void loadCard(){
   int cardNumber = getCardNumber();
   createCard(getCardName(cardNumber), 'p'); // Player position
+  createCard(getCardName(cardNumber), 'p');
+  
   createCard(getCardName(cardNumber), 'd'); // Dealer position
+  createCard(getCardName(cardNumber), 'd');
   println(cardNumber);
   println(cardValue(value[cardNumber%13]));
   // To get a specific object of the collection >>> doubleCheck.get(x);
   //println(doubleCheck); // Print double check list
 }
 
-void loadDealerRule(){
+void loadText(){
   fill(255);
   textAlign(CENTER);
   textSize(22);
@@ -38,16 +41,14 @@ void loadCardPlaceholder(){
   stroke(255);
   strokeWeight(4);
   rectMode(CENTER);
-  rect(width / 2, height / 1.2, 76, -100, 5); //Placeholder for player
-  rect(width / 2, height / 7, 76, 100, 5); //Placeholder for dealer
-  rect(width / 1.2, height / 7, 76, 100, 5); //Placeholder for cardstack
+  rect(width / 2, height / 1.2, 76, -100, 5); // Placeholder for player
+  rect(width / 2, height / 7, 76, 100, 5); // Placeholder for dealer
+  rect(width / 1.2, height / 7, 76, 100, 5); // Placeholder for cardstack
 }
 
 void mousePressed(){
+  // Checks if mouse is pressing 'hit' button. Do something
   if (mouseX > width / 1.5 - 40 && mouseX < width / 1.5 + 40 && mouseY > height / 1.2 - 40 && mouseY < height / 1.2 + 40){
-    // Do something
-    int cardNumber = getCardNumber();
-    createCard(getCardName(cardNumber), 'p');
-    println("HIT");
+    createCard(getCardName(getCardNumber()), 'p');
   }
 }
