@@ -7,6 +7,7 @@ Så lad os lige finde ud af hvordan man gør dette eller om der er en bedere må
 Også skal vi lige tage at få noget mere orden på alt det her shit.
 Der skal også lave en cardplaceholder for dealer.
 Made by Nicolai and Marcelino
+Og vi har kinda en fejl eller noget. værdien vises rigtigt i println men basser ikke med tallet mellem 0-52
 2d1
 */
 import java.util.Collections;
@@ -50,8 +51,10 @@ void setup(){
 }
 
 void draw(){
-  translate(width / 2, height / 2);
-  noLoop();
+  //println(mouseX + " : " + mouseY);
+  //mousePressed();
+  //translate(width / 2, height / 2);
+  
 }
 
 /*

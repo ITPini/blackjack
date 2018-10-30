@@ -5,7 +5,7 @@ void loadCard(){
   println(cardNumber);
   println(cardValue(value[cardNumber%13]));
   //To get a specific object of the collection >>> doubleCheck.get(x);
-  println(doubleCheck); //Print double check list
+  //println(doubleCheck); //Print double check list
 }
 
 void loadDealerRule(){
@@ -34,4 +34,12 @@ void loadCardPlaceholder(){
   strokeWeight(4);
   rect(-38, 150, 76, 100, 5);
   rect(width / 3 - 2, height / -3 - 2, 76, 100, 5);
+}
+
+void mousePressed(){
+  if (mouseX > hitXY[0] && mouseY > hitXY[1] && mouseX < hitXY[2] && mouseY < hitXY[3]){
+    println("hello");
+  }
+  
+  
 }
