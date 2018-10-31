@@ -1,12 +1,12 @@
 void loadCard(){
   int cardNumber = getCardNumber();
-  createCard(getCardName(cardNumber), 'p'); // Player position
-  createCard(getCardName(cardNumber), 'p');
+  createCard(getCardName(getCardNumber()), 'p'); // Player position
+  createCard(getCardName(getCardNumber()), 'p');
   
-  createCard(getCardName(cardNumber), 'd'); // Dealer position
-  createCard(getCardName(cardNumber), 'd');
+  createCard(getCardName(getCardNumber()), 'd'); // Dealer position
+  createCard(getCardName(getCardNumber()), 'd');
   println(cardNumber);
-  println(cardValue(value[cardNumber%13]));
+  println(cardValue(value[cardNumber % 13]));
   // To get a specific object of the collection >>> doubleCheck.get(x);
   //println(doubleCheck); // Print double check list
 }
@@ -24,7 +24,7 @@ void loadHitButton(){
   fill(0, 255, 0);
   stroke(255);
   strokeWeight(2);
-  rect(width / 1.5, height / 1.2, 80, 80, 3);
+  ellipse(width / 1.5, height / 1.2, 80, 80);
 }
 
 void loadCardStack(){
@@ -48,7 +48,8 @@ void loadCardPlaceholder(){
 
 void mousePressed(){
   // Checks if mouse is pressing 'hit' button. Do something
-  if (mouseX > width / 1.5 - 40 && mouseX < width / 1.5 + 40 && mouseY > height / 1.2 - 40 && mouseY < height / 1.2 + 40){
+  float detectHit = dist(mouseX, mouseY, width / 1.5, height / 1.2);
+  if (detectHit < 40){
     createCard(getCardName(getCardNumber()), 'p');
   }
 }

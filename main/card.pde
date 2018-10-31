@@ -11,7 +11,7 @@ public int getCardNumber(){
 
 // Create a string for a card used to load the .gif files
 public String getCardName(int number){
-  String cardStr = face[number%13] + " of " + suit[number/13];
+  String cardStr = face[number % 13] + " of " + suit[number / 13];
   // If cardStr in list generate new card 
   return cardStr; 
 }
