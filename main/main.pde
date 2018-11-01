@@ -38,11 +38,14 @@ void setup(){
   loadCardStack();
   
   // Load starting cards
-  loadCard();
+  loadPlayerCard(getCardNumber());
+  //loadDealerCard(getCardNumber());
 }
 
 void draw(){
   //println(mouseX + " : " + mouseY);
+  //loadPlayerCard(getCardNumber());
+  //loadDealerCard(getCardNumber());
 }
 
 /*

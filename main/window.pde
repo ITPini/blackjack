@@ -1,14 +1,19 @@
-void loadCard(){
-  int cardNumber = getCardNumber();
-  createCard(getCardName(getCardNumber()), 'p'); // Player position
-  createCard(getCardName(getCardNumber()), 'p');
+void loadPlayerCard(int cardNumber){
+  createCard(getCardName(cardNumber), 'p'); // Player position
+  playerPoints = playerPoints + (cardValue(value[cardNumber % 13]));
   
-  createCard(getCardName(getCardNumber()), 'd'); // Dealer position
-  createCard(getCardName(getCardNumber()), 'd');
   println(cardNumber);
   println(cardValue(value[cardNumber % 13]));
+  println("Playerpoints: " + playerPoints);
+  
   // To get a specific object of the collection >>> doubleCheck.get(x);
   //println(doubleCheck); // Print double check list
+}
+
+void loadDealerCard(int cardNumber){
+  createCard(getCardName(cardNumber), 'd'); // Dealer position
+  println(cardNumber);
+  println(cardValue(value[cardNumber % 13]));
 }
 
 void loadText(){
@@ -50,6 +55,8 @@ void mousePressed(){
   // Checks if mouse is pressing 'hit' button. Do something
   float detectHit = dist(mouseX, mouseY, width / 1.5, height / 1.2);
   if (detectHit < 40){
-    createCard(getCardName(getCardNumber()), 'p');
+    int cardNumber =  getCardNumber();
+    loadPlayerCard(cardNumber);
+    
   }
 }
