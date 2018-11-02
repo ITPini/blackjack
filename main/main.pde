@@ -35,6 +35,7 @@ void setup(){
   loadPlayerCard(getCardNumber());
   loadPlayerCard(getCardNumber());
   
+  loadStandButton();
   loadHitButton();
   loadText();
   loadCardStack();
@@ -49,17 +50,22 @@ void draw(){
     resetTable();
     doubleCheck.clear();
   }
+  else if (playerPoints == 21){
+   rectMode(CENTER);
+   // Clears points
+   noStroke();
+   fill(0,153,0);
+   rect(width / 2, height / 2, 200, 100);
+   fill(255);
+   text("You win!", width / 2, height / 2);
+  }
+  else if (dealerPoints > 16){
+    resetTable();
+    doubleCheck.clear();
+  }
+  
+  
   //println(mouseX + " : " + mouseY);
   //loadPlayerCard(getCardNumber());
   //loadDealerCard(getCardNumber());
 }
-
-/*
-public int playerScore(int cardval){
-  
-}
-*/
-
-//public checkDouble(int cardval){
-  
-//}
