@@ -5,6 +5,12 @@ int dealerCards = 0; // Used to calculate pixel offset of cards for dealer
 public int getCardNumber(){
   // When "Hit" button clicked
   int intRand = int(random(suit.length * face.length));
+  // Check if the card number already is in doubleCheck collection
+  for (int i = 0; i < doubleCheck.size(); i++){
+    if (doubleCheck.get(i) == intRand){
+      intRand = int(random(suit.length * face.length));
+    }
+  }
   doubleCheck.add(intRand);
   return intRand;
 }

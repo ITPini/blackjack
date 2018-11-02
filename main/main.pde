@@ -23,9 +23,7 @@ PImage cardbackImg;
 String[] suit = {"Clubs", "Diamonds", "Hearts", "Spades"};
 String[] face = {"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"};
 int[] value = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10};
-ArrayList doubleCheck = new ArrayList();
-
-int[] test = {};
+ArrayList<Integer> doubleCheck = new ArrayList();
 
 void setup(){
   size(1000, 600);
@@ -49,6 +47,7 @@ void setup(){
 void draw(){
   if (playerPoints > 21){
     resetTable();
+    doubleCheck.clear();
   }
   //println(mouseX + " : " + mouseY);
   //loadPlayerCard(getCardNumber());

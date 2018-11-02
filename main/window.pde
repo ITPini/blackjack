@@ -2,12 +2,12 @@ void loadPlayerCard(int cardNumber){
   createCard(getCardName(cardNumber), 'p'); // Player position
   playerPoints = playerPoints + (cardValue(value[cardNumber % 13]));
   
-  println(cardNumber);
-  println(cardValue(value[cardNumber % 13]));
+  //println(cardNumber);
+  //println(cardValue(value[cardNumber % 13]));
   println("Playerpoints: " + playerPoints);
   
   // To get a specific object of the collection >>> doubleCheck.get(x);
-  //println(doubleCheck); // Print double check list
+  println(doubleCheck); // Print double check list
 }
 
 void loadDealerCard(int cardNumber){
