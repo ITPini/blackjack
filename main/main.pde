@@ -33,16 +33,23 @@ void setup(){
   // Load casino table
   background(0, 153, 0);
   loadCardPlaceholder();
+  
+  loadPlayerCard(getCardNumber());
+  loadPlayerCard(getCardNumber());
+  
   loadHitButton();
   loadText();
   loadCardStack();
+  displayPoints();
   
   // Load starting cards
-  loadPlayerCard(getCardNumber());
   //loadDealerCard(getCardNumber());
 }
 
 void draw(){
+  if (playerPoints > 21){
+    resetTable();
+  }
   //println(mouseX + " : " + mouseY);
   //loadPlayerCard(getCardNumber());
   //loadDealerCard(getCardNumber());

@@ -38,7 +38,7 @@ void createCard(String card, char pos){
   cardImg = loadImage("../resources/Cards/" + card + ".gif");
   // Check if card should be created at player (p) or dealer (d) position on the table.
   if (pos == 'p'){
-    image(cardImg, width / 2 + (15 * playerCards), height / 1.2 + (15 * playerCards));
+    image(cardImg, width / 2 + (15 * playerCards), height / 1.2 + (3.5 * playerCards));
     playerCards++;
   }
   else if (pos == 'd'){
