@@ -11,11 +11,13 @@ Og vi har kinda en fejl eller noget. værdien vises rigtigt i println men basser
 */
 import java.util.Collections;
 
-int playerScore;
-int houseScore;
+int playerScore = 0;
+int houseScore = 0;
 int count;
 int houseCount;
 int playerCount;
+boolean gameActive = true;
+boolean standButtonHit = false;
 
 PImage cardImg;
 PImage cardbackImg;
@@ -32,40 +34,44 @@ void setup(){
   background(0, 153, 0);
   loadCardPlaceholder();
   
-  loadPlayerCard(getCardNumber());
-  loadPlayerCard(getCardNumber());
+  //loadPlayerCard(getCardNumber());
+  //loadPlayerCard(getCardNumber());
+  
   
   loadStandButton();
   loadHitButton();
   loadText();
   loadCardStack();
-  displayPoints();
+  //displayPlayerPoints();
   
   // Load starting cards
   //loadDealerCard(getCardNumber());
+
+
 }
 
 void draw(){
-  if (playerPoints > 21){
-    resetTable();
-    doubleCheck.clear();
+  /*while (gameActive == true){
+    if (standButtonHit == false){
+      loadPlayerCard(getCardNumber());
+      loadPlayerCard(getCardNumber());
+      displayPlayerPoints();
+    }
+    else if (standButtonHit == true);{
+      dealerRule();
+      displayDealerPoints();
+    }
+    if (playerPoints > 21 || dealerPoints > 21 || standButtonHit == true && dealerPoints < 16){
+      gameActive = false;
+    }
+
   }
-  else if (playerPoints == 21){
-   rectMode(CENTER);
-   // Clears points
-   noStroke();
-   fill(0,153,0);
-   rect(width / 2, height / 2, 200, 100);
-   fill(255);
-   text("You win!", width / 2, height / 2);
+  if (gameActive == false){*/
+  whoWon();
+  //resetTable();
   }
-  else if (dealerPoints > 16){
-    resetTable();
-    doubleCheck.clear();
-  }
-  
-  
   //println(mouseX + " : " + mouseY);
   //loadPlayerCard(getCardNumber());
   //loadDealerCard(getCardNumber());
-}
+//}
+ 

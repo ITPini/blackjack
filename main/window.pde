@@ -67,24 +67,35 @@ void mousePressed(){
   if (detectHit < 40){
     int cardNumber =  getCardNumber();
     loadPlayerCard(cardNumber);
-    displayPoints();
+    displayPlayerPoints();
   }
    float detectHit2 = dist(mouseX, mouseY, width / 4.25, height / 1.2);
    if (detectHit2 < 40){
      println("hello");
      // If stand dealer draws if under 16
      dealerRule();
+     displayDealerPoints();
+     standButtonHit = true;
    }  
 }
 
 
-void displayPoints(){
+void displayPlayerPoints(){
+  rectMode(CENTER);
+  noStroke();
+  fill(0,153,0);
+  rect(width / 2, height / 2, 300, 100);
+  fill(255);
+  text(playerPoints, width/2, height/2); 
+}
+
+void displayDealerPoints(){
   rectMode(CENTER);
   noStroke();
   fill(0,153,0);
   rect(width / 2, height / 2, 100, 100);
   fill(255);
-  text(playerPoints, width/2, height/2); 
+  text(dealerPoints, width/2, height/2);
 }
 
 void resetTable(){
@@ -96,12 +107,17 @@ void resetTable(){
   // Clears points
   noStroke();
   fill(0,153,0);
-  rect(width / 2, height / 2, 200, 100);
+  rect(width / 2, height / 2, 400, 100);
   // Clears player cards
   rectMode(CORNER);
   rect(width/2.5, height/1.5, 400, 200);
   // Clears dealer cards
   rect(width/2.5, height/40, 350, 200);
+  // Clears dealercards
+  rectMode(CENTER);
+  noStroke();
+  fill(0, 153, 0);
+  rect(width / 2, height / 6, 500, 225);
   // Resets cardplaceholders
   rectMode(CENTER);
   fill(0, 100, 0);
@@ -109,4 +125,5 @@ void resetTable(){
   strokeWeight(4);
   rect(width / 2, height / 1.2, 76, -100, 5); // Placeholder for player
   rect(width / 2, height / 7, 76, 100, 5); // Placeholder for dealer 
+  
 }
