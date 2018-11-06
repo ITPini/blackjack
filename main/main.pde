@@ -3,12 +3,10 @@ Made by Nicolai and Marcelino
 2d1
 
 TODO:
-- Fix bug where the match freezes when both player and dealer has same card points
-- Hide dealers card and reveal them at the end
-- Find a way so that player can't abuse reset button (reset when they've bad cards)
-- Score that tracks wins on screen
-- Optimize for any screen resolution or fullScreen();
-- Add sounds when drawing card
+- Find a way so that player can't abuse reset button (reset when they've bad cards).
+- Score that tracks wins on screen instead of console.
+- Optimize graphics for any screen resolution or fullScreen();
+- Add sounds when drawing card (requires sound library).
 */
 
 import java.util.Collections;
@@ -19,5 +17,5 @@ void setup(){
 }
 
 void draw(){
-
+  
 }

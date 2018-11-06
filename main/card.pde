@@ -1,5 +1,5 @@
 PImage cardImg;
-PImage cardbackImg;
+PImage cardBackImg;
 
 // Used to calculate pixel offset of cards for player and dealer
 float cardOffsetX = 15;
@@ -19,7 +19,7 @@ int[] value = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10};
 
 
 // Generate a card based on a number between 0-52 and returns it
-// The reason for this finction is that we have a number that we can use in different functions and make sure the card dosnt change
+// The reason for this function is that we have a number that we can use in different functions and make sure the card dosent change
 public int getCardNumber(){
   int intRand = int(random(suit.length * face.length)); //Generates the number between 0-52
   

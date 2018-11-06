@@ -10,6 +10,7 @@ int playerPoints;
 void dealerRule(){
   while (dealerPoints < 16){
     displayDealerCard(getCardNumber());
+    displayPoints(width / 1.5, height / 7, dealerPoints);
   }
 }
 
@@ -29,7 +30,7 @@ void whoWon(){
     text("Dealer win!", width / 2, height / 2);
     println("Player: "+ playerRoundWins + " | Dealer: " + dealerRoundWins);
   }
-  else if (dealerPoints > 16 && dealerPoints == playerPoints && gameActive == true){
+  else if (dealerPoints > 16 && playerPoints == dealerPoints){
     doubleCheck.clear();
     text("Draw!", width / 2, height / 2);
   }
