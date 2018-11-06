@@ -1,17 +1,18 @@
+int buttonSize = 80;
+
 // Function that displayes the player card drawn. This function take in an integer. This integer is supposed to be the getCardNumber() function
 // Also keeps track of playerPoints
-void loadPlayerCard(int cardNumber){
+void displayPlayerCard(int cardNumber){
   createCard(getCardName(cardNumber), 'p'); // Player position
   
   // As said earlier modolus 13 returns the value of the card.
   playerPoints = playerPoints + (cardValue(value[cardNumber % 13]));
-    println(playerPoints);
 }
 
 
 // Function that displayes the dealer card drawn. This function take in an integer. This integer is supposed to be the getCardNumber() function
 // Also keeps track of dealerPoints
-void loadDealerCard(int cardNumber){
+void displayDealerCard(int cardNumber){
   createCard(getCardName(cardNumber), 'd'); // Dealer position
   
   // As said earlier modolus 13 returns the value of the card.
@@ -23,10 +24,10 @@ void loadDealerCard(int cardNumber){
 void loadText(){
   fill(255);
   textAlign(CENTER);
-  textSize(10);
-  text("HIT", width / 3, height / 1.2, 40, 40);
-  text("STAND", width / 4.25, height / 1.2, 40, 40);
-  text("RESET", width / 7.25, height / 1.2, 40, 40);
+  textSize(buttonSize / 4);
+  text("HIT", width / 3, height / 1.2 + buttonSize / 3.5, buttonSize, buttonSize);
+  text("STAND", width / 4.25, height / 1.2 + buttonSize / 3.5, buttonSize, buttonSize);
+  text("RESET", width / 7.25, height / 1.2 + buttonSize / 3.5, buttonSize, buttonSize);
   textSize(32);
   text("Dealer draws on 16 or less", width / 2, height / 2.5);
 }
@@ -37,7 +38,7 @@ void loadHitButton(){
   fill(0, 255, 0);
   stroke(255);
   strokeWeight(2);
-  ellipse(width / 3, height / 1.2, 80, 80);
+  ellipse(width / 3, height / 1.2, buttonSize, buttonSize);
 }
 
 
@@ -46,7 +47,7 @@ void loadStandButton(){
   fill(255, 0, 0);
   stroke(255);
   strokeWeight(2);
-  ellipse(width / 4.25, height / 1.2, 80, 80);
+  ellipse(width / 4.25, height / 1.2, buttonSize, buttonSize);
 }
 
 
@@ -55,7 +56,7 @@ void loadResetButton(){
   fill(155);
   stroke(255);
   strokeWeight(2);
-  ellipse(width / 7.25, height / 1.2, 80, 80);
+  ellipse(width / 7.25, height / 1.2, buttonSize, buttonSize);
 }
 
 
@@ -84,23 +85,27 @@ void loadCardPlaceholder(){
 void mousePressed(){
   // Checks if mouse is pressing 'hit' button. Do something
   float detectHit = dist(mouseX, mouseY, width / 3, height / 1.2);
-  if (detectHit < 40 && gameActive == true){
-    loadPlayerCard(getCardNumber());
+  if (detectHit < buttonSize / 2 && gameActive == true){
+    displayPlayerCard(getCardNumber());
+    displayPlayerPoints();
+    // Bust if player draws is over 21
     if (playerPoints > 21){
       doubleCheck.clear();
+      dealerRoundWins++;
       text("Dealer wins!", width / 2, height / 2);
+      println("Dealer: " + dealerRoundWins);
       gameActive = false;
         }
       }
    float detectStand = dist(mouseX, mouseY, width / 4.25, height / 1.2);
-   if (detectStand < 40 && gameActive == true){
-     // If stand dealer draws if under 16
+   if (detectStand < buttonSize / 2 && gameActive == true){
+     // Stand and dealer draws if under 16
      dealerRule();
      gameActive = false;
      whoWon();
     }
    float detectReset = dist(mouseX, mouseY, width / 7.25, height / 1.2);
-   if (detectReset < 40){
+   if (detectReset < buttonSize / 2){
      resetTable();
      gameActive = true;
   }
@@ -110,20 +115,20 @@ void mousePressed(){
 void displayPlayerPoints(){
   rectMode(CENTER);
   noStroke();
-  fill(0,153,0);
+  fill(0, 153, 0);
   rect(width / 2, height / 2, 300, 100);
   fill(255);
-  text(playerPoints, width/2, height/2); 
+  text(playerPoints, width / 2, height/2); 
 }
 
 
 void displayDealerPoints(){
   rectMode(CENTER);
   noStroke();
-  fill(0,153,0);
+  fill(0, 153, 0);
   rect(width / 2, height / 2, 100, 100);
   fill(255);
-  text(dealerPoints, width/2, height/2);
+  text(dealerPoints, width / 2, height / 2);
 }
 
 
@@ -139,9 +144,9 @@ void resetTable(){
   rect(width / 2, height / 2, 400, 100);
   // Clears player cards
   rectMode(CORNER);
-  rect(width/2.5, height/1.5, 400, 200);
+  rect(width / 2.5, height / 1.5, 400, 200);
   // Clears dealer cards
-  rect(width/2.5, height/40, 350, 200);
+  rect(width / 2.5, height / 40, 350, 200);
   // Clears dealercards
   rectMode(CENTER);
   noStroke();
@@ -155,8 +160,9 @@ void resetTable(){
   rect(width / 2, height / 1.2, 76, -100, 5); // Placeholder for player
   rect(width / 2, height / 7, 76, 100, 5); // Placeholder for dealer
   fill(255);
-  loadDealerCard(getCardNumber());
-  loadDealerCard(getCardNumber());
-  loadPlayerCard(getCardNumber());
-  loadPlayerCard(getCardNumber());
+  displayDealerCard(getCardNumber());
+  displayDealerCard(getCardNumber());
+  displayPlayerCard(getCardNumber());
+  displayPlayerCard(getCardNumber());
+  displayPlayerPoints();
 }

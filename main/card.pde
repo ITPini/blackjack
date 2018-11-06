@@ -2,6 +2,8 @@ PImage cardImg;
 PImage cardbackImg;
 
  // Used to calculate pixel offset of cards for player and dealer
+float cardOffsetX = 15;
+float cardOffsetY = 3.5;
 int playerCards = 0;
 int dealerCards = 0;
 
@@ -63,12 +65,13 @@ void createCard(String card, char pos){
   cardImg = loadImage("../resources/Cards/" + card + ".gif");
   
   // Check if card should be created at player (p) or dealer (d) position on the table.
+  // Places the next card by small pixel offsets
   if (pos == 'p'){
-    image(cardImg, width / 2 + (15 * playerCards), height / 1.2 + (3.5 * playerCards));
+    image(cardImg, width / 2 + (cardOffsetX * playerCards), height / 1.2 + (cardOffsetY * playerCards));
     playerCards++;
     }
   else if (pos == 'd'){
-    image(cardImg, width / 2 + (15 * dealerCards), height / 7 + (15 * dealerCards));
+    image(cardImg, width / 2 + (cardOffsetX * dealerCards), height / 7 + (cardOffsetY * dealerCards));
     dealerCards++;
   }
 }

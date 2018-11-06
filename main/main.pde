@@ -13,14 +13,9 @@ TODO:
 
 import java.util.Collections;
 
-int dealerPoints;
-int playerPoints;
-int houseCount;
-int playerCount;
-
 void setup(){
   size(1000, 600);
-
+  
   // Load casino table
   background(0, 153, 0);
   loadCardPlaceholder();  
@@ -30,11 +25,14 @@ void setup(){
   loadText();
   loadCardStack();
   
-  // Load starting cards for player and dealer
-  loadDealerCard(getCardNumber());
-  loadDealerCard(getCardNumber());
-  loadPlayerCard(getCardNumber());
-  loadPlayerCard(getCardNumber());
+  // Generate and dispaly starting cards for player and dealer
+  displayDealerCard(getCardNumber());
+  displayDealerCard(getCardNumber());
+  displayPlayerCard(getCardNumber());
+  displayPlayerCard(getCardNumber());
+  
+  // Display points after the cards has been generated
+  displayPlayerPoints();
 }
 
 void draw(){
