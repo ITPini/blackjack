@@ -1,8 +1,17 @@
 /* 
 Made by Nicolai and Marcelino
-Og vi har kinda en fejl eller noget. værdien vises rigtigt i println men basser ikke med tallet mellem 0-52
 2d1
+
+TODO:
+- Bug when both player and dealer has 21 points
+- Maybe add sound when drawing card?
+- Score that tracks wins
+- Make ace either 1 or 11 N
+- Hide dealers card and reveal them at the end P
+- Show points for player and dealer at the end
+- Remove code that is useless and add more comments N
 */
+
 import java.util.Collections;
 
 int dealerPoints;
@@ -23,7 +32,7 @@ ArrayList<Integer> doubleCheck = new ArrayList();
 
 void setup(){
   size(1000, 600);
-  
+
   // Load casino table
   background(0, 153, 0);
   loadCardPlaceholder();  

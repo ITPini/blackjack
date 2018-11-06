@@ -62,25 +62,25 @@ void loadCardPlaceholder(){
 void mousePressed(){
   // Checks if mouse is pressing 'hit' button. Do something
   float detectHit = dist(mouseX, mouseY, width / 3, height / 1.2);
-  if (detectHit < 40){
-    //int cardNumber =  getCardNumber();
+  if (detectHit < 40 && gameActive == true){
     loadPlayerCard(getCardNumber());
     if (playerPoints > 21){
       doubleCheck.clear();
       text("Dealer wins!", width / 2, height / 2);
-      standButtonHit = true;
+      gameActive = false;
     }
   }
    float detectHit2 = dist(mouseX, mouseY, width / 4.25, height / 1.2);
-   if (detectHit2 < 40 && standButtonHit == false){
+   if (detectHit2 < 40 && gameActive == true){
      // If stand dealer draws if under 16
      dealerRule();
-     standButtonHit = true;
+     gameActive = false;
      whoWon();
    }
-   else if (detectHit2 < 40 && standButtonHit == true){
-     standButtonHit = false;
+   float detectHit3 = dist(mouseX, mouseY, width / 7.25, height / 1.2);
+   if (detectHit3 < 40){
      resetTable();
+     gameActive = true;
    }
 }
 

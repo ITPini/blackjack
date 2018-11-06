@@ -11,7 +11,7 @@ void whoWon(){
   }
   else if (dealerPoints > playerPoints || playerPoints > 21){
     doubleCheck.clear();
-   text("Dealer wins!", width / 2, height / 2);
+    text("Dealer win!", width / 2, height / 2);
   }
   else if (dealerPoints == 21 && playerPoints == 21){
     doubleCheck.clear();
