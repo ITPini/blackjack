@@ -1,13 +1,25 @@
+// Function that displayes the player card drawn. This function take in an integer. This integer is supposed to be the getCardNumber() function
+// Also keeps track of playerPoints
 void loadPlayerCard(int cardNumber){
   createCard(getCardName(cardNumber), 'p'); // Player position
+  
+  // As said earlier modolus 13 returns the value of the card.
   playerPoints = playerPoints + (cardValue(value[cardNumber % 13]));
+    println(playerPoints);
 }
 
+
+// Function that displayes the dealer card drawn. This function take in an integer. This integer is supposed to be the getCardNumber() function
+// Also keeps track of dealerPoints
 void loadDealerCard(int cardNumber){
   createCard(getCardName(cardNumber), 'd'); // Dealer position
+  
+  // As said earlier modolus 13 returns the value of the card.
   dealerPoints = dealerPoints + (cardValue(value[cardNumber % 13]));
 }
 
+
+// Loads all the text displayed on screen
 void loadText(){
   fill(255);
   textAlign(CENTER);
@@ -19,6 +31,8 @@ void loadText(){
   text("Dealer draws on 16 or less", width / 2, height / 2.5);
 }
 
+
+// Displays the hit button onto the screen
 void loadHitButton(){
   fill(0, 255, 0);
   stroke(255);
@@ -26,6 +40,8 @@ void loadHitButton(){
   ellipse(width / 3, height / 1.2, 80, 80);
 }
 
+
+// Displays the stand button onto the screen
 void loadStandButton(){
   fill(255, 0, 0);
   stroke(255);
@@ -33,12 +49,16 @@ void loadStandButton(){
   ellipse(width / 4.25, height / 1.2, 80, 80);
 }
 
+
+// Displays the reset button onto the screen
 void loadResetButton(){
   fill(155);
   stroke(255);
   strokeWeight(2);
   ellipse(width / 7.25, height / 1.2, 80, 80);
 }
+
+
 
 void loadCardStack(){
   imageMode(CENTER);
@@ -49,6 +69,8 @@ void loadCardStack(){
   }
 }
 
+
+// Displays the cardPlaceHolder onto the screen (Theese arent supposed to be seen)
 void loadCardPlaceholder(){
   fill(0, 100, 0);
   stroke(255);
@@ -59,6 +81,7 @@ void loadCardPlaceholder(){
   rect(width / 1.2, height / 7, 76, 100, 5); // Placeholder for cardstack
 }
 
+
 void mousePressed(){
   // Checks if mouse is pressing 'hit' button. Do something
   float detectHit = dist(mouseX, mouseY, width / 3, height / 1.2);
@@ -68,21 +91,22 @@ void mousePressed(){
       doubleCheck.clear();
       text("Dealer wins!", width / 2, height / 2);
       gameActive = false;
-    }
-  }
+        }
+      }
    float detectHit2 = dist(mouseX, mouseY, width / 4.25, height / 1.2);
    if (detectHit2 < 40 && gameActive == true){
      // If stand dealer draws if under 16
      dealerRule();
      gameActive = false;
      whoWon();
-   }
+    }
    float detectHit3 = dist(mouseX, mouseY, width / 7.25, height / 1.2);
    if (detectHit3 < 40){
      resetTable();
      gameActive = true;
-   }
+  }
 }
+
 
 void displayPlayerPoints(){
   rectMode(CENTER);
@@ -93,6 +117,7 @@ void displayPlayerPoints(){
   text(playerPoints, width/2, height/2); 
 }
 
+
 void displayDealerPoints(){
   rectMode(CENTER);
   noStroke();
@@ -101,6 +126,7 @@ void displayDealerPoints(){
   fill(255);
   text(dealerPoints, width/2, height/2);
 }
+
 
 void resetTable(){
   playerPoints = 0;
