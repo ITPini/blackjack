@@ -125,5 +125,8 @@ void resetTable(){
   strokeWeight(4);
   rect(width / 2, height / 1.2, 76, -100, 5); // Placeholder for player
   rect(width / 2, height / 7, 76, 100, 5); // Placeholder for dealer 
-  
+  loadDealerCard(getCardNumber());
+  loadDealerCard(getCardNumber());
+  loadPlayerCard(getCardNumber());
+  loadPlayerCard(getCardNumber());
 }

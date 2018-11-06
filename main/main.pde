@@ -45,13 +45,14 @@ void setup(){
   //displayPlayerPoints();
   
   // Load starting cards
-  //loadDealerCard(getCardNumber());
+  loadDealerCard(getCardNumber());
+  loadDealerCard(getCardNumber());
 
 
 }
 
 void draw(){
-  /*while (gameActive == true){
+  while (gameActive == true){
     if (standButtonHit == false){
       loadPlayerCard(getCardNumber());
       loadPlayerCard(getCardNumber());
@@ -66,12 +67,14 @@ void draw(){
     }
 
   }
-  if (gameActive == false){*/
+  if (gameActive == false){
+  // Problemet der skal løses er at whoWon bliver tjekket hver gang den går i gennem draw. Så vi skal vinde en måde
+  // For at whoWon først bliver tjekket når while loopet er done
   whoWon();
   //resetTable();
   }
   //println(mouseX + " : " + mouseY);
   //loadPlayerCard(getCardNumber());
   //loadDealerCard(getCardNumber());
-//}
+}
  
