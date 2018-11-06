@@ -1,3 +1,5 @@
+boolean gameActive = true;
+
 // When this function is called the dealer draws cards aslong as dealerpoints is less than 16
 // This is basicly the AI of the dealer
 void dealerRule(){

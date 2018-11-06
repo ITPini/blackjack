@@ -59,7 +59,7 @@ void loadResetButton(){
 }
 
 
-
+// Display a card stack for aesthetics
 void loadCardStack(){
   imageMode(CENTER);
   cardbackImg = loadImage("../resources/Cards/Card Back.gif");
@@ -70,7 +70,7 @@ void loadCardStack(){
 }
 
 
-// Displays the cardPlaceHolder onto the screen (Theese arent supposed to be seen)
+// Displays the cardPlaceHolder onto the screen (These arent supposed to be seen)
 void loadCardPlaceholder(){
   fill(0, 100, 0);
   stroke(255);
@@ -80,7 +80,6 @@ void loadCardPlaceholder(){
   rect(width / 2, height / 7, 76, 100, 5); // Placeholder for dealer
   rect(width / 1.2, height / 7, 76, 100, 5); // Placeholder for cardstack
 }
-
 
 void mousePressed(){
   // Checks if mouse is pressing 'hit' button. Do something
@@ -93,15 +92,15 @@ void mousePressed(){
       gameActive = false;
         }
       }
-   float detectHit2 = dist(mouseX, mouseY, width / 4.25, height / 1.2);
-   if (detectHit2 < 40 && gameActive == true){
+   float detectStand = dist(mouseX, mouseY, width / 4.25, height / 1.2);
+   if (detectStand < 40 && gameActive == true){
      // If stand dealer draws if under 16
      dealerRule();
      gameActive = false;
      whoWon();
     }
-   float detectHit3 = dist(mouseX, mouseY, width / 7.25, height / 1.2);
-   if (detectHit3 < 40){
+   float detectReset = dist(mouseX, mouseY, width / 7.25, height / 1.2);
+   if (detectReset < 40){
      resetTable();
      gameActive = true;
   }
