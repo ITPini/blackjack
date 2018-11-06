@@ -91,7 +91,7 @@ void mousePressed(){
       doubleCheck.clear();
       dealerRoundWins++;
       text("Dealer wins!", width / 2, height / 2);
-      println("Player: "+ playerRoundWins + " | Dealer: " + dealerRoundWins);
+      println("Player: "+ playerRoundWins + " | Dealer: " + dealerRoundWins + " | Dealer won");
       gameActive = false;
         }
       }

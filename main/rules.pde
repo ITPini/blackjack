@@ -22,16 +22,17 @@ void whoWon(){
     doubleCheck.clear();
     playerRoundWins++;
     text("You win!", width / 2, height / 2);
-    println("Player: "+ playerRoundWins + " | Dealer: " + dealerRoundWins);
+    println("Player: "+ playerRoundWins + " | Dealer: " + dealerRoundWins + " | Player won");
   }
   else if (dealerPoints > playerPoints || playerPoints > 21){
     doubleCheck.clear();
     dealerRoundWins++;
     text("Dealer win!", width / 2, height / 2);
-    println("Player: "+ playerRoundWins + " | Dealer: " + dealerRoundWins);
+    println("Player: "+ playerRoundWins + " | Dealer: " + dealerRoundWins + " | Dealer won");
   }
-  else if (dealerPoints > 16 && playerPoints == dealerPoints){
+  else if (dealerPoints >= 16 && playerPoints == dealerPoints){
     doubleCheck.clear();
     text("Draw!", width / 2, height / 2);
+    println("Player: "+ playerRoundWins + " | Dealer: " + dealerRoundWins + " | Draw");
   }
 } 
