@@ -1,7 +1,7 @@
 int buttonSize = 80;
 
 // Function that displayes the player card drawn. This function take in an integer. This integer is supposed to be the getCardNumber() function
-// Also keeps track of playerPoints
+// Also keeps track of player points
 void displayPlayerCard(int cardNumber){
   createCard(getCardName(cardNumber), 'p'); // Player position
   
@@ -11,7 +11,7 @@ void displayPlayerCard(int cardNumber){
 
 
 // Function that displayes the dealer card drawn. This function take in an integer. This integer is supposed to be the getCardNumber() function
-// Also keeps track of dealerPoints
+// Also keeps track of dealer points
 void displayDealerCard(int cardNumber){
   createCard(getCardName(cardNumber), 'd'); // Dealer position
   
@@ -20,7 +20,7 @@ void displayDealerCard(int cardNumber){
 }
 
 
-// Loads all the text displayed on screen
+// Display all static text on screen
 void loadText(){
   fill(255);
   textAlign(CENTER);
@@ -82,8 +82,10 @@ void loadCardPlaceholder(){
   rect(width / 1.2, height / 7, 76, 100, 5); // Placeholder for cardstack
 }
 
+
 void mousePressed(){
   // Checks if mouse is pressing 'hit' button. Do something
+  // Hit button and stand button will be disabled if gameActive == false
   float detectHit = dist(mouseX, mouseY, width / 3, height / 1.2);
   if (detectHit < buttonSize / 2 && gameActive == true){
     displayPlayerCard(getCardNumber());
@@ -93,7 +95,7 @@ void mousePressed(){
       doubleCheck.clear();
       dealerRoundWins++;
       text("Dealer wins!", width / 2, height / 2);
-      println("Dealer: " + dealerRoundWins);
+      println("Player: "+ playerRoundWins + " | Dealer: " + dealerRoundWins);
       gameActive = false;
         }
       }
@@ -112,16 +114,18 @@ void mousePressed(){
 }
 
 
+// Display the current card points of player
 void displayPlayerPoints(){
   rectMode(CENTER);
   noStroke();
   fill(0, 153, 0);
-  rect(width / 2, height / 2, 300, 100);
+  rect(width / 2, height / 1.5, 80, 80);
   fill(255);
-  text(playerPoints, width / 2, height/2); 
+  text(playerPoints, width / 2, height / 1.5); 
 }
 
-
+// Basically useless because dealer cards should be hidden
+/*
 void displayDealerPoints(){
   rectMode(CENTER);
   noStroke();
@@ -130,39 +134,32 @@ void displayDealerPoints(){
   fill(255);
   text(dealerPoints, width / 2, height / 2);
 }
+*/
 
 
+// Reset the whole table
 void resetTable(){
+  //Reset points
   playerPoints = 0;
   playerCards = 0;
+  dealerPoints = 0;
   dealerCards = 0;
-  dealerPoints = 0; 
-  rectMode(CENTER);
-  // Clears points
-  noStroke();
-  fill(0,153,0);
-  rect(width / 2, height / 2, 400, 100);
-  // Clears player cards
-  rectMode(CORNER);
-  rect(width / 2.5, height / 1.5, 400, 200);
-  // Clears dealer cards
-  rect(width / 2.5, height / 40, 350, 200);
-  // Clears dealercards
-  rectMode(CENTER);
-  noStroke();
-  fill(0, 153, 0);
-  rect(width / 2, height / 6, 500, 225);
-  // Resets cardplaceholders
-  rectMode(CENTER);
-  fill(0, 100, 0);
-  stroke(255);
-  strokeWeight(4);
-  rect(width / 2, height / 1.2, 76, -100, 5); // Placeholder for player
-  rect(width / 2, height / 7, 76, 100, 5); // Placeholder for dealer
-  fill(255);
+  
+  // Load casino table
+  background(0, 153, 0);
+  loadCardPlaceholder();  
+  loadStandButton();
+  loadHitButton();
+  loadResetButton();
+  loadText();
+  loadCardStack();
+  
+  // Generate and dispaly 2 starting cards for both player and dealer
   displayDealerCard(getCardNumber());
   displayDealerCard(getCardNumber());
   displayPlayerCard(getCardNumber());
   displayPlayerCard(getCardNumber());
+  
+  // Display points after the cards has been generated
   displayPlayerPoints();
 }

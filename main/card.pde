@@ -1,7 +1,7 @@
 PImage cardImg;
 PImage cardbackImg;
 
- // Used to calculate pixel offset of cards for player and dealer
+// Used to calculate pixel offset of cards for player and dealer
 float cardOffsetX = 15;
 float cardOffsetY = 3.5;
 int playerCards = 0;
