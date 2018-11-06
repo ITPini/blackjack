@@ -2,36 +2,19 @@ void dealerRule(){
   while (dealerPoints < 16){
     loadDealerCard(getCardNumber());
   }
-  dealerPoints = 0;
 }
 
 void whoWon(){
-  if (playerPoints == 21){
-     resetTable();
+  if (playerPoints > dealerPoints || dealerPoints > 21){
     doubleCheck.clear();
-   text("You win!", width / 2, height / 2);
-   //delay(600);
-  
+    text("You win!", width / 2, height / 2);
   }
- else if (playerPoints > 21 && standButtonHit == false){
-    resetTable();
-    doubleCheck.clear();
-    text("Dealer wins!", width / 2, height / 2);
-    //delay(600);
-   
-  }
-  else if (playerPoints > dealerPoints && playerPoints <= 21 && standButtonHit == true){
-    resetTable();
-    doubleCheck.clear();
-   text("You win!", width / 2, height / 2);
-   //delay(600);
-  
-  }
-  else if (dealerPoints > playerPoints && dealerPoints <=21 && standButtonHit == true ){
-    resetTable();
+  else if (dealerPoints > playerPoints || playerPoints > 21){
     doubleCheck.clear();
    text("Dealer wins!", width / 2, height / 2);
-   //delay(600);
-
+  }
+  else if (dealerPoints == 21 && playerPoints == 21){
+    doubleCheck.clear();
+    text("Draw!", width / 2, height / 2);
   }
 } 

@@ -1,21 +1,11 @@
 void loadPlayerCard(int cardNumber){
   createCard(getCardName(cardNumber), 'p'); // Player position
   playerPoints = playerPoints + (cardValue(value[cardNumber % 13]));
-  
-  //println(cardNumber);
-  //println(cardValue(value[cardNumber % 13]));
-  println("Playerpoints: " + playerPoints);
-  
-  // To get a specific object of the collection >>> doubleCheck.get(x);
-  println(doubleCheck); // Print double check list
 }
 
 void loadDealerCard(int cardNumber){
   createCard(getCardName(cardNumber), 'd'); // Dealer position
   dealerPoints = dealerPoints + (cardValue(value[cardNumber % 13]));
-  
-  println("Dealer card: " + cardNumber);
-  println("Dealerpoints: " + dealerPoints);
 }
 
 void loadText(){
@@ -24,6 +14,7 @@ void loadText(){
   textSize(10);
   text("HIT", width / 3, height / 1.2, 40, 40);
   text("STAND", width / 4.25, height / 1.2, 40, 40);
+  text("RESET", width / 7.25, height / 1.2, 40, 40);
   textSize(32);
   text("Dealer draws on 16 or less", width / 2, height / 2.5);
 }
@@ -40,6 +31,13 @@ void loadStandButton(){
   stroke(255);
   strokeWeight(2);
   ellipse(width / 4.25, height / 1.2, 80, 80);
+}
+
+void loadResetButton(){
+  fill(155);
+  stroke(255);
+  strokeWeight(2);
+  ellipse(width / 7.25, height / 1.2, 80, 80);
 }
 
 void loadCardStack(){
@@ -65,20 +63,26 @@ void mousePressed(){
   // Checks if mouse is pressing 'hit' button. Do something
   float detectHit = dist(mouseX, mouseY, width / 3, height / 1.2);
   if (detectHit < 40){
-    int cardNumber =  getCardNumber();
-    loadPlayerCard(cardNumber);
-    displayPlayerPoints();
+    //int cardNumber =  getCardNumber();
+    loadPlayerCard(getCardNumber());
+    if (playerPoints > 21){
+      doubleCheck.clear();
+      text("Dealer wins!", width / 2, height / 2);
+      standButtonHit = true;
+    }
   }
    float detectHit2 = dist(mouseX, mouseY, width / 4.25, height / 1.2);
-   if (detectHit2 < 40){
-     println("hello");
+   if (detectHit2 < 40 && standButtonHit == false){
      // If stand dealer draws if under 16
      dealerRule();
-     displayDealerPoints();
      standButtonHit = true;
-   }  
+     whoWon();
+   }
+   else if (detectHit2 < 40 && standButtonHit == true){
+     standButtonHit = false;
+     resetTable();
+   }
 }
-
 
 void displayPlayerPoints(){
   rectMode(CENTER);
@@ -124,7 +128,8 @@ void resetTable(){
   stroke(255);
   strokeWeight(4);
   rect(width / 2, height / 1.2, 76, -100, 5); // Placeholder for player
-  rect(width / 2, height / 7, 76, 100, 5); // Placeholder for dealer 
+  rect(width / 2, height / 7, 76, 100, 5); // Placeholder for dealer
+  fill(255);
   loadDealerCard(getCardNumber());
   loadDealerCard(getCardNumber());
   loadPlayerCard(getCardNumber());

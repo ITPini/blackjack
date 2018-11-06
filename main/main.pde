@@ -1,18 +1,12 @@
 /* 
-For at tælle point skal vi lave et whileloop og statementen for whileloopet
-bliver false når runden er slut.
-Også køre point tælleren bare i ring og adder den nye carval til en variabel som printes på skærmen
-hver gang et nyt kort bliver trukket.
-Så lad os lige finde ud af hvordan man gør dette eller om der er en bedere måde at tælle point på.
-Også skal vi lige tage at få noget mere orden på alt det her shit.
 Made by Nicolai and Marcelino
 Og vi har kinda en fejl eller noget. værdien vises rigtigt i println men basser ikke med tallet mellem 0-52
 2d1
 */
 import java.util.Collections;
 
-int playerScore = 0;
-int houseScore = 0;
+int dealerPoints;
+int playerPoints;
 int count;
 int houseCount;
 int playerCount;
@@ -32,30 +26,26 @@ void setup(){
   
   // Load casino table
   background(0, 153, 0);
-  loadCardPlaceholder();
-  
-  //loadPlayerCard(getCardNumber());
-  //loadPlayerCard(getCardNumber());
-  
-  
+  loadCardPlaceholder();  
   loadStandButton();
   loadHitButton();
+  loadResetButton();
   loadText();
   loadCardStack();
-  //displayPlayerPoints();
   
   // Load starting cards
   loadDealerCard(getCardNumber());
   loadDealerCard(getCardNumber());
-
-
-}
+  loadPlayerCard(getCardNumber());
+  loadPlayerCard(getCardNumber());
+  }
 
 void draw(){
+  /*
   while (gameActive == true){
+    println("Test");
+  }
     if (standButtonHit == false){
-      loadPlayerCard(getCardNumber());
-      loadPlayerCard(getCardNumber());
       displayPlayerPoints();
     }
     else if (standButtonHit == true);{
@@ -63,18 +53,10 @@ void draw(){
       displayDealerPoints();
     }
     if (playerPoints > 21 || dealerPoints > 21 || standButtonHit == true && dealerPoints < 16){
-      gameActive = false;
+       gameActive = false;
     }
-
   }
   if (gameActive == false){
-  // Problemet der skal løses er at whoWon bliver tjekket hver gang den går i gennem draw. Så vi skal vinde en måde
-  // For at whoWon først bliver tjekket når while loopet er done
-  whoWon();
-  //resetTable();
-  }
-  //println(mouseX + " : " + mouseY);
-  //loadPlayerCard(getCardNumber());
-  //loadDealerCard(getCardNumber());
+   whoWon();
+  }*/
 }
- 
