@@ -20,10 +20,11 @@ void displayDealerCard(int cardNumber){
 }
 
 
-// Display all static text on screen
-void loadText(){
+// Display all centered text with size 32
+void displayText(String text, float w, float h){
+  textAlign(CENTER);
   textSize(32);
-  text("Dealer draws on 16 or less", width / 2, height / 2.5);
+  text(text, w, h);
 }
 
 
@@ -69,13 +70,28 @@ void loadCardPlaceholder(){
 // Display the current card points of player
 // The function can be used to display and remove previous card points
 // Local int 'points' can either be playerPoints or dealerPoints
-void displayPoints(float w, float h, int points){
+void displayPoints(int points, float w, float h){
   rectMode(CENTER);
   noStroke();
+  textAlign(CENTER);
+  textSize(32);
   fill(0, 153, 0);
   rect(w, h, 80, 80);
   fill(255);
   text(points, w, h); 
+}
+
+
+// Display the score for both player and dealer
+void displayWins(String text, float w, float h){
+  rectMode(CENTER);
+  textSize(20);
+  textAlign(LEFT);
+  noStroke();
+  fill(0, 153, 0);
+  rect(w, h, 430, 30);
+  fill(255);
+  text(text, w, h); 
 }
 
 
@@ -85,13 +101,13 @@ void mousePressed(){
   float detectHit = dist(mouseX, mouseY, width / 3, height / 1.2);
   if (detectHit < buttonSize / 2 && gameActive == true){
     displayPlayerCard(getCardNumber());
-    displayPoints(width / 1.5, height / 1.2, playerPoints);
+    displayPoints(playerPoints, width / 1.5, height / 1.2);
     // Bust if player draws is over 21
     if (playerPoints > 21){
       doubleCheck.clear();
       dealerRoundWins++;
       text("Dealer wins!", width / 2, height / 2);
-      println("Player: "+ playerRoundWins + " | Dealer: " + dealerRoundWins + " | Dealer won");
+      displayWins("Player: "+ playerRoundWins + " | Dealer: " + dealerRoundWins, 5, 20);
       gameActive = false;
         }
       }
@@ -100,13 +116,13 @@ void mousePressed(){
      // Stand and dealer draws if under 16
      displayDealerCard(getCardNumber());
      displayDealerCard(getCardNumber());
-     displayPoints(width / 1.5, height / 7, dealerPoints);
+     displayPoints(dealerPoints, width / 1.5, height / 7);
      dealerRule();
      gameActive = false;
      whoWon();
     }
    float detectReset = dist(mouseX, mouseY, width / 7.25, height / 1.2);
-   if (detectReset < buttonSize / 2){
+   if (detectReset < buttonSize / 2 && gameActive == false){
      resetTable();
      gameActive = true;
   }
@@ -123,17 +139,18 @@ void resetTable(){
   
   // Load casino table
   background(0, 153, 0);
-  loadCardPlaceholder();  
+  loadCardPlaceholder();
+  loadCardBack();
   displayButton("HIT", width / 3, height / 1.2, 0, 255, 0); // 'Hit' button
   displayButton("STAND", width / 4.25, height / 1.2, 255, 0, 0); // 'Stand' button
   displayButton("RESET", width / 7.25, height / 1.2, 155, 155, 155); // 'Reset' button
-  loadText();
-  loadCardBack();
+  displayText("Dealer draws on 16 or less", width / 2, height / 2.5);
   
-  // Generate and dispaly 2 starting cards for both player and dealer
+  // Generate and dispaly 2 starting cards for the player only
   displayPlayerCard(getCardNumber());
   displayPlayerCard(getCardNumber());
   
-  // Display points after the cards has been generated
-  displayPoints(width / 1.5, height / 1.2, playerPoints);
+  // Display points and wins after the cards has been generated
+  displayPoints(playerPoints, width / 1.5, height / 1.2);
+  displayWins("Player: "+ playerRoundWins + " | Dealer: " + dealerRoundWins, 5, 20);
 }
