@@ -106,14 +106,15 @@ void mousePressed(){
     if (playerPoints > 21){
       doubleCheck.clear();
       dealerRoundWins++;
-      text("Dealer wins!", width / 2, height / 2);
+      displayText("Dealer wins!", width / 2, height / 2);
       displayWins("Player: "+ playerRoundWins + " | Dealer: " + dealerRoundWins, 5, 20);
       gameActive = false;
         }
       }
    float detectStand = dist(mouseX, mouseY, width / 4.25, height / 1.2);
    if (detectStand < buttonSize / 2 && gameActive == true){
-     // Stand and dealer draws if under 16
+     // Generate the dealers card
+     // Dealer draws if under 16
      displayDealerCard(getCardNumber());
      displayDealerCard(getCardNumber());
      displayPoints(dealerPoints, width / 1.5, height / 7);

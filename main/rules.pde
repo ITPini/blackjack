@@ -21,8 +21,6 @@ void whoWon(){
   if (playerPoints > dealerPoints || dealerPoints > 21){
     doubleCheck.clear();
     playerRoundWins++;
-    textAlign(CENTER);
-    textSize(32);
     displayText("You win!", width / 2, height / 2);
     displayWins("Player: "+ playerRoundWins + " | Dealer: " + dealerRoundWins, 5, 20);
   }
@@ -34,8 +32,6 @@ void whoWon(){
   }
   else if (dealerPoints >= 16 && playerPoints == dealerPoints){
     doubleCheck.clear();
-    textAlign(CENTER);
-    textSize(32);
     displayText("Draw!", width / 2, height / 2);
     displayWins("Player: "+ playerRoundWins + " | Dealer: " + dealerRoundWins, 5, 20);
   }
